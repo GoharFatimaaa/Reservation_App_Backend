@@ -6,13 +6,10 @@ const roomDetailSchema=new mongoose.Schema({
         required:true,
     },
     location:{
-        type :String,
+        type:String,
         required:true
     },
-   roomType:{
-    type:String,
-    required:true,
-   }
+   roomTypeID: { type:mongoose.Types.ObjectId,required: true, ref: 'RoomType' }
     
 
 })

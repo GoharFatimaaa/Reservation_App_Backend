@@ -2,6 +2,9 @@ const path = require("path");
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const userRoutes=require('./routes/reservation-routes')
+const roomtypeRoutes=require('./routes/room-type-routes')
+const roomdetailRoutes=require('./routes/room-detail-routes')
 
 
 const app = express();
@@ -19,6 +22,9 @@ mongoose
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use('/users', userRoutes);
+app.use('/room',roomtypeRoutes)
+app.use('/room',roomdetailRoutes)
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -33,5 +39,10 @@ app.use((req, res, next) => {
   next();
 });
 
+const port = process.env.PORT || "3000";
 
-module.exports = app;
+app.listen(port, () => {
+  console.log('Server is up on port ', +port)
+})
+
+// module.exports = app;

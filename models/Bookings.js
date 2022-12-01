@@ -1,20 +1,40 @@
 const mongoose=require('mongoose')
-const userSchema=new mongoose.Schema({
+const bookingSchema=new mongoose.Schema({
 
     userName:{
         type:String,
         required:true,
     },
     location:{
+        type:String,
+        required:true,
+    },
+    roomName:{
         type :String,
         required:true
     },
-   businessUnit:{
+   roomType:{
     type:String,
-    required:true,
+   },
+   participants: {
+    type: String
+   },
+   Date:{
+    type: Number, default: (new Date()).getTime()
+   },
+   bookingDuration: {
+    type: Number, default: (new Date()).getTime()
+   },
+   startTime: {
+    type: Number, default: (new Date()).getTime(),
+    required: true
+   },
+   endTime: {
+    type: Number, default: (new Date()).getTime(),
+    required: true
    }
     
 
 })
-const User=mongoose.model("User",userSchema)
-module.exports=User
+const Booking=mongoose.model("Bookings",bookingSchema)
+module.exports=Booking
